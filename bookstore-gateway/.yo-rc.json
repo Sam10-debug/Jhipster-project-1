@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "applicationType": "gateway",
+    "authenticationType": "jwt",
+    "baseName": "bookstore-gateway",
+    "buildTool": "maven",
+    "cacheProvider": null,
+    "clientFramework": "react",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1753178402065,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "enableHibernateCache": null,
+    "enableTranslation": true,
+    "entities": [],
+    "feignClient": null,
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "NjdiY2Y4MzZjOGY3ZmQxNTJiNGNlNGZhYjZiYWI1ODY5MGE2NzkwZDNmMDZhYzg0ZTExNWJjN2JkZjhkZjMxOTNlNGIxZTQ2YjRiMjAzNmM4ZGIxYTA5NTI2YzQ3NTNkYmM1Njg4YzkxMmZhMzZkNmJjM2NjMjIxYzQ1MjI2ODg=",
+    "languages": ["en"],
+    "microfrontend": false,
+    "microfrontends": [],
+    "nativeLanguage": "en",
+    "packageName": "com.emorinken.bookstore",
+    "prodDatabaseType": "postgresql",
+    "reactive": true,
+    "serverPort": 8080,
+    "serviceDiscoveryType": "eureka",
+    "syncUserWithIdp": null,
+    "testFrameworks": [],
+    "withAdminUi": false
+  }
+}

@@ -1,0 +1,2 @@
+org.springframework.test.context.ContextCustomizerFactory = \
+    com.emorinken.bookapp.config.SqlTestContainersSpringContextCustomizerFactory
