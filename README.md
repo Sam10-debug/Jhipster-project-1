@@ -102,6 +102,30 @@ Define the following fields:
 
 Select the following prompts as it fits your preference. At the end, JHipster will generate the entity, relationship (if any, none in this case), repository, service, and resource (REST API controller), DTO, tests etc.
 
+
+## Running the Applications
+### 1. Make sure the JHipster Registry is running
+   Remember, we pulled the JHipster registry from docker and started it using ```docker start```
+
+Open ```http://localhost:8761 ```on your browser of choice and you should be redirected to the sign in page. The default username and password is admin:
+![Architecture Diagram](images/Jhipster-signin.png)
+
+After signing in, the interface of the JHipster registry should look like this:
+
+And it is important to note that the only instance present is the JHipster itself
+![Architecture Diagram](images/Jhipster.png)
+### 2. Run the Gateway Application
+
+![Architecture Diagram](images/gateway.png)
+
+Check the registry again and see that this time, the gateway has been included as an instance
+![Architecture Diagram](images/Jhipster-gateway.png)
+
+## 3. Run the BookApp Microservice
+![Architecture Diagram](images/microservice.png)
+
+Check the registry again and see that this time, the bookapp microservice has also been included as an instance
+![Architecture Diagram](images/Jhipster_gateway_mic.png)
 ## Testing the API with Postman
 ### 1. Obtain a JWT Token
    - Method: POST
