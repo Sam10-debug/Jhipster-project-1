@@ -129,7 +129,7 @@ Check the registry again and see that this time, the bookapp microservice has al
 ## Testing the API with Postman
 ### 1. Obtain a JWT Token
    - Method: POST
-   - URL: http://localhost:8088/api/authenticate
+   - URL: http://localhost:8080/api/authenticate
    - Headers:
 
 ```Content-Type```: ```application/json```
