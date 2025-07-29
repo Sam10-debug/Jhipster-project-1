@@ -38,8 +38,9 @@ public class Book implements Serializable {
     private BigDecimal price;
 
     @NotNull
-    @Size(min = 3, max = 25)
-    @Column(name = "isbn", length = 25, nullable = false)
+    @Size(min = 10, max = 13)
+    @Column(name = "isbn", length = 13, nullable = false, unique = true)
+
     private String isbn;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

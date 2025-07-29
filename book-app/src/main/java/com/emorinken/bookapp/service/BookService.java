@@ -49,4 +49,6 @@ public interface BookService {
     void delete(Long id);
 
     void applyDiscount(String author, BigDecimal discountPercent);
+
+    BookDTO findBookByIsbn(String isbn);
 }

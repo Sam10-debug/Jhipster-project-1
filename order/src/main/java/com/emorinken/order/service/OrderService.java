@@ -1,6 +1,8 @@
 package com.emorinken.order.service;
 
 import com.emorinken.order.service.dto.OrderDTO;
+import com.emorinken.order.service.dto.RequestDTO;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +16,7 @@ public interface OrderService {
      * @param orderDTO the entity to save.
      * @return the persisted entity.
      */
-    OrderDTO save(OrderDTO orderDTO);
+    OrderDTO save(RequestDTO requestDTO);
 
     /**
      * Updates a order.

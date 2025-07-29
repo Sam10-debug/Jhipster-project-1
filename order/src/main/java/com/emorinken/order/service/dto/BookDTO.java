@@ -1,4 +1,5 @@
-package com.emorinken.bookapp.service.dto;
+package com.emorinken.order.service.dto;
+
 
 import jakarta.validation.constraints.*;
 import java.io.Serializable;

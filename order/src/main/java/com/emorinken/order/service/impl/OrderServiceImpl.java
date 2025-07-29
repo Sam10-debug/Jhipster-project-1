@@ -1,22 +1,28 @@
 package com.emorinken.order.service.impl;
 
+import com.emorinken.order.client.BookAppClient;
 import com.emorinken.order.domain.Order;
 import com.emorinken.order.repository.OrderRepository;
 import com.emorinken.order.service.OrderService;
+import com.emorinken.order.service.dto.BookDTO;
 import com.emorinken.order.service.dto.OrderDTO;
+import com.emorinken.order.service.dto.RequestDTO;
 import com.emorinken.order.service.mapper.OrderMapper;
+
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import com.emorinken.order.web.rest.errors.BadRequestAlertException;
+import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Service Implementation for managing {@link com.emorinken.order.domain.Order}.
- */
+
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
@@ -26,18 +32,33 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
     private final OrderMapper orderMapper;
+    private final BookAppClient bookAppClient;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, BookAppClient bookAppClient) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
+        this.bookAppClient = bookAppClient;
     }
 
     @Override
-    public OrderDTO save(OrderDTO orderDTO) {
-        LOG.debug("Request to save Order : {}", orderDTO);
-        Order order = orderMapper.toEntity(orderDTO);
-        order = orderRepository.save(order);
-        return orderMapper.toDto(order);
+    public OrderDTO save(RequestDTO requestDto) {
+        LOG.debug("Request to save Order : {}", requestDto);
+        try {
+
+            BookDTO book = bookAppClient.getBookByIsbn(requestDto.getBookIsbn());
+            OrderDTO orderDTO= new OrderDTO();
+            orderDTO.setQuantity(requestDto.getQuantity());
+            orderDTO.setTotalPrice(book.getPrice().multiply(BigDecimal.valueOf(orderDTO.getQuantity())));
+            orderDTO.setOrderDate(requestDto.getOrderDate());
+            orderDTO.setBookIsbn(requestDto.getBookIsbn());
+            orderDTO.setCustomerName(requestDto.getCustomerName());
+            Order order = orderMapper.toEntity(orderDTO);
+            order = orderRepository.save(order);
+            return orderMapper.toDto(order);
+        } catch (FeignException e) {
+            throw new BadRequestAlertException("Book not found", "ORDER", "bookNotFound");
+        }
+
     }
 
     @Override

@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
+
+import jakarta.ws.rs.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -96,5 +98,12 @@ public class BookServiceImpl implements BookService {
         });
 
         bookRepository.saveAll(books);
+    }
+
+    @Override
+    public BookDTO findBookByIsbn(String isbn){
+        return bookRepository.findBookByIsbn(isbn)
+            .map(bookMapper::toDto)
+            .orElseThrow(() -> new NotFoundException("Book not found"));
     }
 }

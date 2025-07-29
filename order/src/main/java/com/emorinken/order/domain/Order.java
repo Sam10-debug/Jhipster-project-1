@@ -8,9 +8,6 @@ import java.time.LocalDate;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-/**
- * A Order.
- */
 @Entity
 @Table(name = "jhi_order")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -20,8 +17,8 @@ public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id")
     private Long id;
 
@@ -31,6 +28,7 @@ public class Order implements Serializable {
     private String bookIsbn;
 
     @NotNull
+    @Size(min=1)
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
@@ -47,7 +45,7 @@ public class Order implements Serializable {
     @Column(name = "total_price", precision = 21, scale = 2, nullable = false)
     private BigDecimal totalPrice;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+
 
     public Long getId() {
         return this.id;
@@ -127,7 +125,6 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -142,7 +139,7 @@ public class Order implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+
         return getClass().hashCode();
     }
 
