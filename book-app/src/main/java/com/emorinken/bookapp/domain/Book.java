@@ -38,8 +38,8 @@ public class Book implements Serializable {
     private BigDecimal price;
 
     @NotNull
-    @Size(min = 10, max = 13)
-    @Column(name = "isbn", length = 13, nullable = false, unique = true)
+//    @Size(min = 10, max = 13)
+    @Column(name = "isbn", nullable = false, unique = true)
 
     private String isbn;
 

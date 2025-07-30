@@ -23,12 +23,12 @@ public class Order implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 10, max = 13)
-    @Column(name = "book_isbn", length = 13, nullable = false, unique = true)
+//    @Size(min = 10, max = 13)
+    @Column(name = "book_isbn", nullable = false, unique = true)
     private String bookIsbn;
 
     @NotNull
-    @Size(min=1)
+//    @Size(min=1)
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 

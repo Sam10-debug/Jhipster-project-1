@@ -15,7 +15,7 @@ public class RequestDTO implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 10, max = 13)
+//    @Size(min = 10, max = 13)
     private String bookIsbn;
 
     @NotNull

@@ -131,7 +131,7 @@ public class BookResource {
         return ResponseUtil.wrapOrNotFound(bookDTO);
     }
 
-    @GetMapping("/{isbn}")
+    @GetMapping("/isbn/{isbn}")
     public ResponseEntity<BookDTO> getBookByIsbn(@PathVariable("isbn") String isbn) {
         LOG.debug("REST request to get Book : {}", isbn);
         BookDTO bookDTO = bookService.findBookByIsbn(isbn);

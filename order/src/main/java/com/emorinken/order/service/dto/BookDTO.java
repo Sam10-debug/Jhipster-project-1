@@ -22,7 +22,7 @@ public class BookDTO implements Serializable {
     private BigDecimal price;
 
     @NotNull
-    @Size(min = 3, max = 25)
+//    @Size(min = 3, max = 25)
     private String isbn;
 
     public Long getId() {

@@ -43,7 +43,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO save(RequestDTO requestDto) {
         LOG.debug("Request to save Order : {}", requestDto);
-        try {
 
             BookDTO book = bookAppClient.getBookByIsbn(requestDto.getBookIsbn());
             OrderDTO orderDTO= new OrderDTO();
@@ -55,9 +54,7 @@ public class OrderServiceImpl implements OrderService {
             Order order = orderMapper.toEntity(orderDTO);
             order = orderRepository.save(order);
             return orderMapper.toDto(order);
-        } catch (FeignException e) {
-            throw new BadRequestAlertException("Book not found", "ORDER", "bookNotFound");
-        }
+
 
     }
 
