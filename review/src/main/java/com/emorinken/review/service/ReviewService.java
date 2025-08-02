@@ -1,5 +1,6 @@
 package com.emorinken.review.service;
 
+import com.emorinken.review.service.dto.ResponseDTO;
 import com.emorinken.review.service.dto.ReviewDTO;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,7 @@ public interface ReviewService {
      * @param reviewDTO the entity to save.
      * @return the persisted entity.
      */
-    ReviewDTO save(ReviewDTO reviewDTO);
+    ResponseDTO save(ReviewDTO reviewDTO);
 
     /**
      * Updates a review.

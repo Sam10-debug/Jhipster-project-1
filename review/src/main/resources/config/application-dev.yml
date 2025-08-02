@@ -36,6 +36,9 @@ management:
       probability: 1.0 # report 100% of traces
 
 spring:
+  docker:
+    compose:
+      enabled: false
   devtools:
     restart:
       enabled: true
@@ -56,8 +59,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/review
-    username: review
-    password:
+    username: bookstore
+    password: Emorinken
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -100,7 +103,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: ZjU5MTkxNGYxZTlhNjg2MzZhNmIwYmIxNzhhZDRjMmU2YTc0ZjViZWFkMThlNmU3ZTNkNDJhMmZiOGM1MjgzYzgyMzUyYzcyMzIwYmE5ZWVkMDBkNDBhMDU5MmNjMTA0YjA4NTNmYzYyZjUzN2E4YmQ4MzhlMDFjYjI0Y2UwODM=
+        base64-secret: NjdiY2Y4MzZjOGY3ZmQxNTJiNGNlNGZhYjZiYWI1ODY5MGE2NzkwZDNmMDZhYzg0ZTExNWJjN2JkZjhkZjMxOTNlNGIxZTQ2YjRiMjAzNmM4ZGIxYTA5NTI2YzQ3NTNkYmM1Njg4YzkxMmZhMzZkNmJjM2NjMjIxYzQ1MjI2ODg=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

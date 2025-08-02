@@ -2,6 +2,7 @@ package com.emorinken.review.web.rest;
 
 import com.emorinken.review.repository.ReviewRepository;
 import com.emorinken.review.service.ReviewService;
+import com.emorinken.review.service.dto.ResponseDTO;
 import com.emorinken.review.service.dto.ReviewDTO;
 import com.emorinken.review.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
@@ -50,15 +51,15 @@ public class ReviewResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
-    public ResponseEntity<ReviewDTO> createReview(@Valid @RequestBody ReviewDTO reviewDTO) throws URISyntaxException {
+    public ResponseEntity<ResponseDTO> createReview(@Valid @RequestBody ReviewDTO reviewDTO) throws URISyntaxException {
         LOG.debug("REST request to save Review : {}", reviewDTO);
         if (reviewDTO.getId() != null) {
             throw new BadRequestAlertException("A new review cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        reviewDTO = reviewService.save(reviewDTO);
-        return ResponseEntity.created(new URI("/api/reviews/" + reviewDTO.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, reviewDTO.getId().toString()))
-            .body(reviewDTO);
+        ResponseDTO responseDTO = reviewService.save(reviewDTO);
+        return ResponseEntity.created(new URI("/api/reviews/" + responseDTO.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, responseDTO.getId().toString()))
+            .body(responseDTO);
     }
 
     /**

@@ -3,6 +3,9 @@ package com.emorinken.review.service.impl;
 import com.emorinken.review.domain.Review;
 import com.emorinken.review.repository.ReviewRepository;
 import com.emorinken.review.service.ReviewService;
+import com.emorinken.review.service.client.BookServiceClient;
+import com.emorinken.review.service.dto.BookDTO;
+import com.emorinken.review.service.dto.ResponseDTO;
 import com.emorinken.review.service.dto.ReviewDTO;
 import com.emorinken.review.service.mapper.ReviewMapper;
 import java.util.LinkedList;
@@ -20,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class ReviewServiceImpl implements ReviewService {
+    private final BookServiceClient bookServiceClient;
 
     private static final Logger LOG = LoggerFactory.getLogger(ReviewServiceImpl.class);
 
@@ -27,17 +31,26 @@ public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewMapper reviewMapper;
 
-    public ReviewServiceImpl(ReviewRepository reviewRepository, ReviewMapper reviewMapper) {
+    public ReviewServiceImpl(BookServiceClient bookServiceClient, ReviewRepository reviewRepository, ReviewMapper reviewMapper) {
+        this.bookServiceClient = bookServiceClient;
         this.reviewRepository = reviewRepository;
         this.reviewMapper = reviewMapper;
     }
 
     @Override
-    public ReviewDTO save(ReviewDTO reviewDTO) {
+    public ResponseDTO save(ReviewDTO reviewDTO) {
         LOG.debug("Request to save Review : {}", reviewDTO);
+        BookDTO book= bookServiceClient.getBookByIsbn(reviewDTO.getBookIsbn());
+
         Review review = reviewMapper.toEntity(reviewDTO);
         review = reviewRepository.save(review);
-        return reviewMapper.toDto(review);
+        ResponseDTO responseDTO= new ResponseDTO();
+        responseDTO.setId(review.getId());
+        responseDTO.setReviewerName(review.getReviewerName());
+        responseDTO.setReviewText(review.getReviewText());
+        responseDTO.setTitle(book.getTitle());
+        responseDTO.setAuthor(book.getAuthor());
+        return responseDTO;
     }
 
     @Override

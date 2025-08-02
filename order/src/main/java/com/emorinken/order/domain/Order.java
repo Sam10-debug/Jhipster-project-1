@@ -24,7 +24,7 @@ public class Order implements Serializable {
 
     @NotNull
 //    @Size(min = 10, max = 13)
-    @Column(name = "book_isbn", nullable = false, unique = true)
+    @Column(name = "book_isbn", nullable = false, unique = true, updatable = false)
     private String bookIsbn;
 
     @NotNull

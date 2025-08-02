@@ -169,7 +169,7 @@ spring:
       hibernate.cache.hazelcast.instance_name: review
       hibernate.cache.hazelcast.use_lite_member: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy

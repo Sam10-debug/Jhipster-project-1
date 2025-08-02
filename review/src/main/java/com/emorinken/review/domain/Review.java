@@ -7,9 +7,7 @@ import java.time.LocalDate;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-/**
- * A Review.
- */
+
 @Entity
 @Table(name = "review")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -19,8 +17,8 @@ public class Review implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "id")
     private Long id;
 
